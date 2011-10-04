@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Baja tus agendadas!</title>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+
+        <link rel="stylesheet" type="text/css" href="bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="popup.css">
+
+        <script src="jquery.js" type="text/javascript" language="JavaScript"></script>
+        <script src="jquery.tmpl.js" type="text/javascript" language="JavaScript"></script>
+        <script src="popup.js" type="text/javascript" language="JavaScript"></script>
+ 
+</head>
+
+<body>
+    
+    <span class="loader"></span>
+    <h1> Tu <A href="#" onclick="window.open('http://'+ config.domain + '/me/scheduled')" >
+    agenda</A> en Cinemaki (<span id="user"></span>) </h1>
+ 
+    <div id="status"><p> </div>
+    <ul id="movies"></ul>
+
+    <div class="foot">
+        <a href="#" onclick="resyncme()" class="butt">Refrescar</a>
+        Método de descarga: <span id="met"></span>
+        <br>
+        Sitio de Torrents: <span id="tp"></span>
+        <br>(<A href="#" onclick="window.open(chrome.extension.getURL('options.html'))">cambiar</a>)
+    </div>
+    <span class="help-block">
+                <strong>Nota:</strong> Esta applicación no esta relaciona con Cinemaki.com, ni con sus propietarios.
+        </span>
+
+    <div id="log" style="display:none"></div>
+</body>
+    <!-- MOVIE TEMPLATE -->    
+        <script id="movieTemplate" type="text/x-jquery-tmpl">
+            <li id="movie-${movie_id}">
+                <a class="image" href="${url}" target="_blank">
+                    <img src="${img}" title="${title} | en agenda desde hace ${when}" alt="${title}" height="96px" width="64px" />
+                </a>
+
+                <a href="#" onclick="hideTorrent(${movie_id})" class="close" title="Ocultar">
+                    x
+                </a>
+
+                {{if torrent_url}}
+                    {{if download}}
+                    <a id="d${movie_id}" class="butt2 btn success" href="${torrent_url}" target="_blank" onclick="movie[${movie_id}].done=1" title="${torrent_url}"">
+                    {{else}}
+                    <a id="d${movie_id}" class="butt2 btn success" href="#" onclick="download2(${movie_id})" title="${torrent_url}"">
+                    {{/if}}
+                        Bajar
+                    </a>
+                    <a class="butt3" href="http://www.subdivx.com/index.php?buscar=${title_escaped}&accion=5&masdesc=&subtitulos=1&realiza_b=1" target="_blank">Subs</a>
+
+                {{else}}
+                    <a id="d${movie_id}" class="butt2 btn disabled" href="#" target="_blank">
+                        N / D
+                    </a>
+                {{/if}}
+            </li>
+        </script>
+
+
+
+        </body>
+        <div id="log" style="display:none"></div>
+</html>

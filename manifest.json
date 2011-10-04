@@ -1,0 +1,17 @@
+{
+    "name": "Baja tus agendadas",
+    "version": "2.0",
+    "description": "Extension para bajar películas agendadas en Cinemaki",
+    "icons": {"128": "icon_128.png"},
+    "browser_action": 
+        {
+            "default_icon": "browseraction.png",
+            "default_title": "Cinemaki Plus",
+            "popup": "popup.html"
+        },
+    "update_url": "https://raw.github.com/devely/CinemakiPlus/master/updates.xml",
+    "permissions": [
+    "tabs", "http://*/*"
+    ],
+    "options_page": "options.html"
+}
